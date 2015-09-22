@@ -1,0 +1,211 @@
+<ion-view view-title="eBrokerage" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}">
+    <ion-nav-buttons side="left">
+      <button on-tap="doBack()" class="button button-icon icon ion-backicon"><i class="icon ion-ios7-arrow-back"></i></button>
+  </ion-nav-buttons>
+  <ion-list class="dropnav" ng-if="hasDropNav">
+    <ion-item on-tap="toggleDropNav()">
+      Watchlist <i class="ion-arrow-down-b"></i>
+    </ion-item>
+    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+      {{menuItem.title}}
+    </ion-item>
+  </ion-list>
+  <ion-content class="quoteDetails has-footer" has-bouncing="false" scrollbar-y="false" ng-class="{'stock-owned': stockOwned, 'has-dropnav': hasDropNav, '': !hasDropNav}">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="timeMessage">{{datePhrase}}</div>
+
+        <div class="quoteHeroDetails card">
+          <div class="summaryBox">
+            <span class="stockSymbol">{{currentStock.Symbol}}</span>
+            <span class="stockName">{{currentStock.Name}}</span>
+            <button on-tap="openModal({{stockId}})" class="watchlist delWatchList">-<br/>Delete from Watchlist</button>
+          </div>
+          <div class="flex-row">
+            <div class="lastValueBox">
+              <span class="quoteLabel">Last Value</span>
+              <span class="lastValue">{{currentStock.Close}}</span>
+            </div>
+            <div ng-if="stockOwned" class="create-alert">
+              <span>Create Alert</span>
+            </div>
+            <div class="changeValueBox">
+              <span class="quoteLabel">Change</span>
+              <span class="changeValue {{currentStock.ChangeDirection}}" >{{currentStock.Change}} <sub>({{currentStock.ChangePercent}})</sub></span>
+            </div>
+          </div>
+        </div>
+        <div ng-if="stockOwned" class="flex-row card">
+          <div class="owned-info">
+            <span class="quoteLabel">Security Account</span>
+            <span>{{ownedInfo.Account}}</span>
+          </div>
+          <div class="owned-info">
+            <span class="quoteLabel">Sellable Quantity</span>
+            <span>{{ownedInfo.Quantity | currency:"":0}}</span>
+          </div>
+          <div class="owned-info">
+            <span class="quoteLabel">Total Market Value</span>
+            <span>{{customStock.selectedMarket}}D {{ownedInfo.Quantity*currentStock.Close | currency:"":2}}</span>
+          </div>
+        </div>
+        <button on-tap="doDetailsExpand()" class="moreDetails" ng-class="{'isExpanded': detailsExpanded, '': !detailsExpanded}">Bid/Ask Queue<img src="img/icons/handle-arrow.png" /></button>
+        <ion-list class="depthTable" ng-class="{'isExpanded': detailsExpanded, '': !detailsExpanded}">
+          <ion-item class="row">
+            <div class="col">BID: {{currentStock.Close | number:2}}<br/>Volume (Queue)</div>
+            <div class="col">ASK: {{currentStock.Close | number:2}}<br/>Volume (Queue)</div>
+          </ion-item>
+          <ion-item class="row">
+            <div class="col">122.00k (10)</div>
+            <div class="col">122.00k (10)</div>
+          </ion-item>
+          <ion-item class="row">
+            <div class="col">122.00k (23)</div>
+            <div class="col">237.00k (11)</div>
+          </ion-item>
+          <ion-item class="row">
+            <div class="col">122.00k (10)</div>
+            <div class="col">121.00k (34)</div>
+          </ion-item>
+          <ion-item class="row">
+            <div class="col">122.00k (86)</div>
+            <div class="col">123.00k (10)</div>
+          </ion-item>
+          <ion-item class="row">
+            <div class="col">122.00k (12)</div>
+            <div class="col">122.00k (18)</div>
+          </ion-item>
+          <ion-item class="row">
+            <div class="col">187.00k (10)</div>
+            <div class="col">142.00k (10)</div>
+          </ion-item>
+          <ion-item class="row">
+            <div class="col">122.00k (4)</div>
+            <div class="col">122.00k (10)</div>
+          </ion-item>
+        </ion-list>
+        <div class="detailsCover">
+          <!-- Semi Custom Tabs START -->
+          <div class="inline-tabs tabs-top tabs-striped">
+            <div class="tab-nav tabs">
+              <a on-tap="doTabSwitch('statistics')" ng-class="{'tab-item-active': activeTab == 'statistics'}" class="tab-item tab-item-active">
+                <span class="tab-title">Statistics</span>
+              </a>
+              <a on-tap="doTabSwitch('chart')" ng-class="{'tab-item-active': activeTab == 'chart'}" class="tab-item">
+                <span class="tab-title">Chart</span>
+              </a>
+              <a on-tap="doTabSwitch('news')" ng-class="{'tab-item-active': activeTab == 'news'}" class="tab-item">
+                <span class="tab-title">News</span>
+              </a>
+            </div>
+          </div>
+          <div class="tab-content" ng-if="activeTab == 'statistics'">
+            <div class="row row-top">
+              <div class="col">
+                <span class="line-item">
+                  <span class="item-1">Open:</span>
+                  <span class="item-2">{{currentStock.Close | number:2}}</span>
+                </span>
+                <span class="line-item section-divider">
+                  <span class="item-1">Prev. Close:</span>
+                  <span class="item-2">{{currentStock.PrevClose | number:2}}</span>
+                </span>
+                <span class="line-item">
+                  <span class="item-1">High:</span>
+                  <span class="item-2">{{currentStock.High | number:2}}</span>
+                </span>
+                <span class="line-item section-divider">
+                  <span class="item-1">Low:</span>
+                  <span class="item-2">{{currentStock.Low | number:2}}</span>
+                </span>
+                <span class="line-item">
+                  <span class="item-1">52 Week High:</span>
+                  <span class="item-2">27.00</span>
+                </span>
+                <span class="line-item section-divider">
+                  <span class="item-1">52 Week Low:</span>
+                  <span class="item-2">25.08</span>
+                </span>
+                <span class="line-item section-divider">
+                  <span class="item-1">Spread:</span>
+                  <span class="item-2">0.01/0.01</span>
+                </span>
+              </div>
+              <div class="col">
+                <span class="line-item">
+                  <span class="item-1">Volume:</span>
+                  <span class="item-2">22.85M</span>
+                </span>
+                <span class="line-item section-divider">
+                  <span class="item-1">Turnover:</span>
+                  <span class="item-2">16M</span>
+                </span>
+                <span class="line-item">
+                  <span class="item-1">P/E:</span>
+                  <span class="item-2">10X</span>
+                </span>
+                <span class="line-item">
+                  <span class="item-1">E/S:</span>
+                  <span class="item-2">41.89</span>
+                </span>
+                <span class="line-item section-divider">
+                  <span class="item-1">Div Yield:</span>
+                  <span class="item-2">2.92%</span>
+                </span>
+                <span class="line-item">
+                  <span class="item-1">Currency:</span>
+                  <span class="item-2">{{customStock.selectedMarket}}D</span>
+                </span>
+                <span class="line-item section-divider">
+                  <span class="item-1">Lot Size:</span>
+                  <span class="item-2">200</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content" ng-if="activeTab == 'chart'">
+            <ion-list>
+              <ion-item>
+                <div class="button-bar bar-stable">
+                  <a on-tap="chartPeriod('day')" class="button" ng-class="{active: chart.period=='day'}">1 Day</a>
+                  <a on-tap="chartPeriod('week')" class="button" ng-class="{active: chart.period=='week'}">1 Week</a>
+                  <a on-tap="chartPeriod('month')" class="button" ng-class="{active: chart.period=='month'}">1 Month</a>
+                  <a on-tap="chartPeriod('year')" class="button" ng-class="{active: chart.period=='year'}">52 Weeks</a>
+                </div>
+              </ion-item>
+            </ion-list>
+            <img src="img/Citi_Chart.gif" class="phone-width" alt="Chart" ng-if="chart.period=='day'" />
+            <img src="img/DBS_Chart.gif" class="phone-width" alt="Chart" ng-if="chart.period=='week'" />
+            <img src="img/Citi_Chart.gif" class="phone-width" alt="Chart" ng-if="chart.period=='month'" />
+            <img src="img/DBS_Chart.gif" class="phone-width" alt="Chart" ng-if="chart.period=='year'" />
+          </div>
+          <div class="tab-content" ng-if="activeTab == 'news'">
+            <ion-list class="seperated-list">
+              <ion-item>
+                <span>Lorem ipsum dolor sit amet {{currentStock.Name}}</span>
+                <p>{{currentStock.Name}}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dictum orci mollis imperdiet commodo. Suspendisse at scelerisque ante, vel faucibus sapien</p>
+              </ion-item>
+              <ion-item>
+                <span>{{currentStock.Name}} lorem ipsum dolor sit amet</span>
+                <p>{{currentStock.Name}}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dictum orci mollis imperdiet commodo. Suspendisse at scelerisque ante, vel faucibus sapien</p>
+              </ion-item>
+              <ion-item>
+                <span>Lorem ipsum dolor {{currentStock.Name}} sit amet</span>
+                <p>{{currentStock.Name}}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dictum orci mollis imperdiet commodo. Suspendisse at scelerisque ante, vel faucibus sapien</p>
+              </ion-item>
+              <ion-item>
+                <span>Lorem {{currentStock.Name}} ipsum dolor sit amet</span>
+                <p>{{currentStock.Name}}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dictum orci mollis imperdiet commodo. Suspendisse at scelerisque ante, vel faucibus sapien</p>
+              </ion-item>
+            </ion-list>
+          </div>
+          <!-- Semi Custom Tabs END -->
+        </div>
+  </ion-content>
+  <div class="bar bar-footer bar-primary two-lines">
+    <div class="button-bar bar-positive">
+      <a on-tap="doNavigate('makeTrade','buy','buySellButton')" class="button button-balanced">Buy<br/>BID {{currentStock.High}}</a>
+      <a ng-if="stockOwned" on-tap="doNavigate('makeTrade','sell','buySellButton')" class="button button-assertive">Sell<br/>ASK {{currentStock.Low}}</a>
+    </div>
+  </div>
+</ion-view>

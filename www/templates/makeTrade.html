@@ -1,0 +1,221 @@
+<ion-view view-title="eBrokerage" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}" class="makeTradeView">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-list class="dropnav">
+    <ion-item on-tap="toggleDropNav()">
+      Trade Now <i class="ion-arrow-down-b"></i>
+    </ion-item>
+    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+      {{menuItem.title}}
+    </ion-item>
+  </ion-list>
+  <ion-content delegate-handle="page-content" class="has-dropnav has-footer" has-bouncing="false" scrollbar-y="false">
+    <ion-list>
+      <ion-item class="item-icon-right" href="#/app/makeTrade/SecurityAccount">
+        <p><small>Security Account</small></p>
+        <p>{{transaction.securityAccount}}</p>
+        <i class="icon ion-ios7-arrow-right"></i>
+      </ion-item>
+      <ion-item class="item-icon-right" href="#/app/tradeQuote">
+        <div class="customQuote trade">
+          <div class="market"><span class="quoteLabel">Market</span><span class="quoteInfo">{{transaction.stockCode[0] || 'HK'}}</span></div>
+          <div class="code">
+            <span class="quoteLabel">Stock</span>
+            <span class="quoteInfo">{{transaction.stockCode[1] || 'Enter Stock'}}</span>
+          </div>
+        </div>
+        <i class="icon ion-ios7-arrow-right"></i>
+      </ion-item>
+      <ion-items>
+        <div class="quoteDetailsContainers" ng-if="transaction.stockCode">
+        <!-- Pasted Quote Details START -->
+          <div class="timeMessage" on-tap="doRefresh()">{{datePhrase}} <span class="link">Refresh Quote</span></div>
+          <div class="row quoteHeroDetails">
+            <div class="col lastValueBox">
+              <span class="quoteLabel">Last Value</span>
+              <span class="lastValue">{{transaction.stockCode[2].Close}}</span>
+            </div>
+            <div class="col changeValueBox">
+              <span class="quoteLabel">Change</span>
+              <span class="changeValue" ng-class="{'positive': changePositive, 'negative': !changePositive}">{{transaction.stockCode[2].Change | number:2}} <sub>({{transaction.stockCode[2].ChangePercent}})</sub></span>
+            </div>
+          </div>
+
+          <button on-tap="doDetailsExpand()" class="moreDetails" ng-class="{'isExpanded': detailsExpanded, '': !detailsExpanded}">Full Quote<img src="img/icons/handle-arrow.png" /></button>
+
+          <div class="quoteDetails" ng-class="{'isExpanded': detailsExpanded,'chartTab': activeTab == 'chart'}">
+            <ion-list class="depthTable" ng-class="{'isExpanded': detailsExpanded, '': !detailsExpanded}">
+              <ion-item class="row">
+                <div class="col">BID: {{transaction.stockCode[2].Close}}<br/>Volume (Queue)</div>
+                <div class="col">ASK: {{transaction.stockCode[2].Close}}<br/>Volume (Queue)</div>
+              </ion-item>
+              <ion-item class="row">
+                <div class="col">122.00k (10)</div>
+                <div class="col">122.00k (10)</div>
+              </ion-item>
+              <ion-item class="row">
+                <div class="col">122.00k (23)</div>
+                <div class="col">237.00k (11)</div>
+              </ion-item>
+              <ion-item class="row">
+                <div class="col">122.00k (10)</div>
+                <div class="col">121.00k (34)</div>
+              </ion-item>
+              <ion-item class="row">
+                <div class="col">122.00k (86)</div>
+                <div class="col">123.00k (10)</div>
+              </ion-item>
+              <ion-item class="row">
+                <div class="col">122.00k (12)</div>
+                <div class="col">122.00k (18)</div>
+              </ion-item>
+              <ion-item class="row">
+                <div class="col">187.00k (10)</div>
+                <div class="col">142.00k (10)</div>
+              </ion-item>
+              <ion-item class="row">
+                <div class="col">122.00k (4)</div>
+                <div class="col">122.00k (10)</div>
+              </ion-item>
+            </ion-list>
+            <!-- Semi Custom Tabs START -->
+            <div class="inline-tabs tabs-top tabs-striped">
+              <div class="tab-nav tabs">
+                <a on-tap="doTabSwitch('statistics')" ng-class="{'tab-item-active': activeTab == 'statistics'}" class="tab-item tab-item-active">
+                  <span class="tab-title">Statistics</span>
+                </a>
+                <a on-tap="doTabSwitch('chart')" ng-class="{'tab-item-active': activeTab == 'chart'}" class="tab-item">
+                  <span class="tab-title">Chart</span>
+                </a>
+              </div>
+            </div>
+            <div class="tab-content" ng-if="activeTab == 'statistics'">
+              <div class="row row-top">
+                <div class="col">
+                  <span class="line-item">
+                    <span class="item-1">Open:</span>
+                    <span class="item-2">26.34</span>
+                  </span>
+                  <span class="line-item section-divider">
+                    <span class="item-1">Prev. Close:</span>
+                    <span class="item-2">26.30</span>
+                  </span>
+                  <span class="line-item">
+                    <span class="item-1">High:</span>
+                    <span class="item-2">{{transaction.stockCode[2].High}}</span>
+                  </span>
+                  <span class="line-item section-divider">
+                    <span class="item-1">Low:</span>
+                    <span class="item-2">{{transaction.stockCode[2].Low}}</span>
+                  </span>
+                  <span class="line-item">
+                    <span class="item-1">52 Week High:</span>
+                    <span class="item-2">27.00</span>
+                  </span>
+                  <span class="line-item section-divider">
+                    <span class="item-1">52 Week Low:</span>
+                    <span class="item-2">25.08</span>
+                  </span>
+                  <span class="line-item section-divider">
+                    <span class="item-1">Spread:</span>
+                    <span class="item-2">0.01/0.01</span>
+                  </span>
+                </div>
+                <div class="col">
+                  <span class="line-item">
+                    <span class="item-1">Volume:</span>
+                    <span class="item-2">22.85M</span>
+                  </span>
+                  <span class="line-item section-divider">
+                    <span class="item-1">Turnover:</span>
+                    <span class="item-2">16M</span>
+                  </span>
+                  <span class="line-item">
+                    <span class="item-1">P/E:</span>
+                    <span class="item-2">10X</span>
+                  </span>
+                  <span class="line-item">
+                    <span class="item-1">E/S:</span>
+                    <span class="item-2">41.89</span>
+                  </span>
+                  <span class="line-item section-divider">
+                    <span class="item-1">Div Yield:</span>
+                    <span class="item-2">2.92%</span>
+                  </span>
+                  <span class="line-item">
+                    <span class="item-1">Currency:</span>
+                    <span class="item-2">{{transaction.stockCode[0]}}D</span>
+                  </span>
+                  <span class="line-item section-divider">
+                    <span class="item-1">Lot Size:</span>
+                    <span class="item-2">200</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="tab-content" ng-if="activeTab == 'chart'">
+              <ion-list>
+                <ion-item>
+                  <div class="button-bar bar-stable">
+                    <a on-tap="chartPeriod('day')" class="button" ng-class="{active: chart.period=='day'}">1 Day</a>
+                    <a on-tap="chartPeriod('week')" class="button" ng-class="{active: chart.period=='week'}">1 Week</a>
+                    <a on-tap="chartPeriod('month')" class="button" ng-class="{active: chart.period=='month'}">1 Month</a>
+                    <a on-tap="chartPeriod('year')" class="button" ng-class="{active: chart.period=='year'}">52 Weeks</a>
+                  </div>
+                </ion-item>
+              </ion-list>
+              <img src="img/Citi_Chart.gif" class="phone-width" alt="Chart" ng-if="chart.period=='day'" />
+              <img src="img/DBS_Chart.gif" class="phone-width" alt="Chart" ng-if="chart.period=='week'" />
+              <img src="img/Citi_Chart.gif" class="phone-width" alt="Chart" ng-if="chart.period=='month'" />
+              <img src="img/DBS_Chart.gif" class="phone-width" alt="Chart" ng-if="chart.period=='year'" />
+            </div>
+          </div>
+          <!-- Semi Custom Tabs END -->
+          <!-- Pasted Quote Details END -->
+        </div>
+      </ion-items>
+      <ion-item class="item-icon-right" href="#/app/makeTrade/SettlementAccount">
+        <p><small>Settlement Account</small></p>
+        <p>{{transaction.settlementAccount || "Choose a Settlement Account"}}</p>
+        <i class="icon ion-ios7-arrow-right"></i>
+      </ion-item>
+      <ion-item class="item-icon-right" href="#/app/makeTrade/OrderType">
+        <p><small>Order type</small></p>
+        <p>{{transaction.orderType || "Select Type"}}</p>
+        <i class="icon ion-ios7-arrow-right"></i>
+      </ion-item>
+      <ion-item>
+        <div class="button-bar bar-positive" id="buySellButton">
+          <a on-tap="doUpdateBuySell('buy')" class="button" ng-class="{active: transaction.transactionType=='buy'}">Buy</a>
+          <a on-tap="doUpdateBuySell('sell')" class="button" ng-class="{active: transaction.transactionType=='sell'}">Sell</a>
+        </div>
+      </ion-item>
+      <ion-item>
+        <label for="maketradeprice"><small>Price</small></label>
+        <input placeholder="Enter Price" type="number" value="{{transaction.price}}" id="maketradeprice" step="0.01" ng-blur="updatePrice()" min="0" pattern="^\d+(\.|\,)\d{2}$">
+      </ion-item>
+      <ion-item>
+        <label for="maketradequantity"><small>Quantity</small></label>
+        <input placeholder="Enter Amount" type="number" value="{{transaction.quantity}}" id="maketradequantity" ng-blur="updateQuantity(this.value)" step="200" min="0" pattern="[0-9]">
+        <p><small>Lot Size: 200</small></p>
+        <a on-tap="stepQuantity('up')" class="button button-outline stepper stepperUp">+</a>
+        <a on-tap="stepQuantity('down')" class="button button-outline stepper stepperDown">-</a>
+        <div class="tradeAlert" ng-class="{error: !isAffordable()}">
+          <p ng-show="hasCost()">Price x Quantity : {{transaction.stockCode[0] || 'HK'}}D {{cost | currency:"":2}}</p>
+          <p> Total Buying Power is <strong>{{transaction.stockCode[0] || 'HK'}}D {{buyingPower | currency:"":2}}</strong></p>
+        </div>
+      </ion-item>
+      <ion-item class="item-icon-right">  <!-- href="#/app/makeTrade/DatePicker" disabled till next round -->
+        <p><small>Good Till</small></p>
+        <p>{{transaction.date}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <div class="bar bar-footer bar-primary">
+    <div class="button-bar bar-positive">
+      <a on-tap="openModal()" class="button button-dark">Cancel</a>
+      <a on-tap="doContinue()" ng-class="{disabled: !isValid}" class="button">Continue</a>
+    </div>
+  </div>
+</ion-view>

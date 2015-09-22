@@ -1,0 +1,29 @@
+<ion-view view-title="eBrokerage" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}">
+    <ion-nav-buttons side="left">
+    	<button on-tap="doBack()" class="button button-icon icon ion-backicon"><i class="icon ion-ios7-arrow-back"></i></button>
+	</ion-nav-buttons>
+	<ion-list class="dropnav" ng-if="hasDropNav">
+	    <ion-item on-tap="toggleDropNav()">
+	      Watchlist <i class="ion-arrow-down-b"></i>
+	    </ion-item>
+	    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+	      {{menuItem.title}}
+	    </ion-item>
+	</ion-list>
+  	<ion-content class="watchlistCreate has-footer" has-bouncing="false" scrollbar-y="false" ng-class="{'has-dropnav': hasDropNav, '': !hasDropNav}">
+  		<p class="headerText">Lorem ipsum dolor sit amet, cons
+ectetur adipiscing elit. In malesuada
+dolor libero, ut eui.</p>
+  		<div class="watchlistCreate card">
+  			<label for="watchlistname"><small>Name</small>
+        	<input placeholder="Enter name" type="text" value="{{watchlist.name}}" id="watchlist.name" ng-change="addWatchlist(watchlist.name)" ng-model="watchlist.name">
+        	</label>
+  		</div>
+  	</ion-content>
+  	<div class="bar bar-footer bar-primary watchlistCreate">
+	    <div class="button-bar bar-positive">
+		    <a on-tap="doCancel()" class="button button-dark">Cancel</a>
+		    <a on-tap="doContinue()" ng-class="{disabled: !isValid}" class="button disable-user-behavior">Continue</a>
+		</div>
+	</div>
+ </ion-view>

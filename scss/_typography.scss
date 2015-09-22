@@ -1,0 +1,8 @@
+// Typography
+@include add-font("Interstate", "interstate-regular-webfont", normal, normal);
+@include add-font("Interstate", "interstate-ultrablackcond-webfont", 900, normal);
+@include add-font("Interstate", "interstate-black-webfont", bold, normal);
+@include add-font("Interstate", "interstate-thin-webfont", 300, normal);
+@include add-font("Interstate", "interstate-light-webfont", 200, normal);
+@include add-font("Interstate", "interstate-light-condensed", 100, normal);
+@include add-font("Interstate", "InterstateRegCond", 400, normal);

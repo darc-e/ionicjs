@@ -1,0 +1,15 @@
+<ion-list ng-repeat="section in stockListView">
+	<ion-item class="item item-divider">{{section.title}}</ion-item>
+	<ion-item class="item-icon-right flex-row" on-tap="doNavigate('quickQuote/{{stock.Symbol}}')" ng-repeat="stock in section.stocks">
+		<div class="stock-summary">
+			<span>{{stock.Name}}</span>
+	    <p class="changeValue {{stock.ChangeDirection}}">{{stock.Change}} ({{stock.ChangePercent}}%)</p>
+    </div>
+    <ul class="stock-info">
+    	<li><span class="label">Symbol: </span>{{stock.Symbol}}</li>
+    	<li><span class="label">Code: </span>{{stock.Code}}</li>
+    	<li><span class="label">Account: </span>{{stock.Account}}</li>
+    </ul>
+		<i class="icon ion-ios7-arrow-right"></i>
+	</ion-item>
+</ion-list>

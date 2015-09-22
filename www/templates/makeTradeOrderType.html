@@ -1,0 +1,15 @@
+<ion-view view-title="{{title}}">
+  <ion-nav-buttons side="left">
+    <button on-tap="doBack()" class="button button-icon icon ion-backicon"><i class="icon ion-ios7-arrow-back"></i></button>
+  </ion-nav-buttons>
+  <ion-content has-header has-bouncing="false" scrollbar-y="false">
+    <ion-list>
+      <ion-item class="item-divider" ng-repeat="option in options">
+        <p>{{option.title}}</p>
+        <ion-item ng-repeat="item in option.types" on-tap="doUpdate('{{item}}')">
+        	<p>{{item}}</p>
+      	</ion-item>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

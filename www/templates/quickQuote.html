@@ -1,0 +1,45 @@
+<ion-view view-title="eBrokerage" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}">
+  <ion-nav-buttons side="left">
+    <button on-tap="doBack()" class="button button-icon icon ion-backicon" ng-if="isTransaction"><i class="icon ion-ios7-arrow-back"></i></button>
+    <button menu-toggle="left" class="button button-icon icon ion-navicon" ng-if="!isTransaction"></button>
+  </ion-nav-buttons>
+  <ion-list class="dropnav" ng-if="hasDropNav">
+    <ion-item on-tap="toggleDropNav()">
+      Quick Quote <i class="ion-arrow-down-b"></i>
+    </ion-item>
+    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+      {{menuItem.title}}
+    </ion-item>
+  </ion-list>
+  <ion-content has-bouncing="false" scrollbar-y="false" ng-class="{'has-dropnav': hasDropNav}">
+	  <!-- <div class="customQuoteBox"> -->
+	  	<div class="customQuote card">
+        <a class="market" href="#/app/tradeMarketSelect" ng-if="isTransaction"><span class="quoteLabel">Market</span><span class="quoteInfo">{{customStock.selectedMarket}}</span></a>
+	  		<a class="market" href="#/app/marketSelect" ng-if="!isTransaction"><span class="quoteLabel">Market</span><span class="quoteInfo">{{customStock.selectedMarket}}</span></a>
+	  		<div class="code">
+	  			<label class="quoteLabel">Stock</label>
+	  			<input type="search" ng-change="stockCodeChange()" ng-model="customStock.enteredStock" class="quoteInfo" placeholder="Enter Stock" />
+	  		</div>
+	  		<button id="quoteBTN" on-tap="goToQuoteDetails()" class="quote" disabled>{{buttonText}}</button>
+	  	</div>
+  	<!-- </div> -->
+    <ion-list>
+	    <ion-item class="item-divider" ng-if="searchStocks">
+        Search Results ({{searchLength}})
+      </ion-item>
+      <ion-item ng-repeat="stock in searchStocks" on-tap="goToQuoteDetails('{{stock.Symbol}}')" class="item-icon-right">
+        <p class="stockSymbol" ng-bind-html="stock.Symbol"></p>
+        <p class="stockName" ng-bind-html="stock.Name"></p>
+        <i class="icon ion-ios7-arrow-right"></i>
+      </ion-item>
+	    <ion-item class="item-divider" ng-if="!searchStocks">
+        Recently Quoted
+      </ion-item>
+      <ion-item ng-repeat="stock in recentStocks" on-tap="goToQuoteDetails('{{stock.Symbol}}')" class="item-icon-right" ng-if="!searchStocks">
+        <p class="stockSymbol">{{stock.Symbol}}</p>
+        <p class="stockName">{{stock.Name}}</p>
+        <i class="icon ion-ios7-arrow-right"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

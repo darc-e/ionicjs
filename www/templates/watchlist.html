@@ -1,0 +1,37 @@
+<ion-view view-title="eBrokerage" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-list class="dropnav" ng-if="hasDropNav">
+    <ion-item on-tap="toggleDropNav()">
+      Watchlist <i class="ion-arrow-down-b"></i>
+    </ion-item>
+    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+      {{menuItem.title}}
+    </ion-item>
+  </ion-list>
+  <ion-content has-bouncing="false" scrollbar-y="false" ng-class="{'has-dropnav': hasDropNav, '': !hasDropNav}">
+    <div class="scroll">
+	     <button on-tap="doNavigate('watchlistCreate')" class="createWatchList"> CREATE WATCH LIST + </button>
+    </div>
+     <div class= "card watchList">
+      <ion-list>
+        <ion-item ng-repeat="watchList in watchLists" on-tap="goToWatchListDetails('{{$index}}')" class="item-icon-right">
+          <div class="flex-row">
+            <div class="lastValueBox">
+              <span class="quoteLabel">{{watchList.name}} </span>
+              <span class="lastValue"><span class="watchListItem">items</span> {{watchList.itemCount}} </span>
+            </div>
+            <div class="changeValueBox">
+              <span class="changeValue {{watchList.ChangeDirection}}">
+                <span >{{watchList.changeTotal}} <sub>({{watchList.changePercent}}%)</sub></span>
+              </span>
+            </div>
+            <i class="icon ion-ios7-arrow-right"></i>
+          </div>
+
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>

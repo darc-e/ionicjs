@@ -1,0 +1,254 @@
+.has-dropnav {
+	top: 97px;
+	border-top: 1px solid #000;
+	-webkit-transition: -webkit-transform 300ms ease-in-out;
+}
+.dropNavExpanded {
+	.has-dropnav {
+		-webkit-transform: translateY(100%);
+	}
+}
+.dropnav .list {
+	background-color: #f2f2f2;
+	height: 100%;
+	z-index: 0;
+	top: 44px;
+	.item,
+	a {
+		background-color: transparent;
+		text-align: center;
+		&.isActive {
+			font-size: 120%;
+			color: $brandPrimary;
+		}
+	}
+	.item:first-child {
+		background-color: #fff;
+		color: $brandDark;
+	}
+}
+// LEFT dropNavExpanded
+.MainMenuQuickTask {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 104px;
+	width: 295px;
+	background: #f8f8f8;
+}
+.MainMenuQuickTask li {
+	margin: 0;
+	padding: 0;
+	height: 75px;
+	width: 90px;
+	display: inline-block;
+	border-right: none;
+	img {
+		width: 100%;
+	}
+}
+.mrc .MainMenuQuickTask{
+	padding: 8px;
+}
+.cards .MainMenuQuickTask {
+	width: 572px;
+	height: 135px;
+	li {
+		width: 262px;
+		padding: 12px;
+	}	
+}
+.MainMenuQuickTask li:last-child {
+	border-right: none;
+}
+.MainMenuQuickTask li a {
+	margin: 0;
+	padding: 0;
+	display: block;
+	text-align: center;
+	color: #444;
+	text-decoration: none;
+	font-size: 0.9em;
+	line-height: 1em;
+}
+
+[ion-side-menu-content] {
+    box-shadow: -3px 0 15px rgba(0,0,0,0.4);
+}
+.bar-positive .button.button-icon {
+	border: 1px solid rgba(255,255,255,0.2);
+	border-radius: 100px;
+	display: block;
+	// margin: 7px 0;
+	width: 40px;
+	height: 40px;
+	margin: 0px;
+	position: relative;
+	top: 7px;
+}
+.platform-android4_0,
+.platform-android4_1,
+.platform-android4_2,
+.platform-android4_3,
+.platform-android4_4,
+.platform-android2_3 {
+	.ion-backicon {
+		img {
+			top: 0px;
+		}
+	}
+}
+.ion-backicon {
+	img {
+		// margin-top: 10px;
+		top: 3px;
+		position: relative;
+		// top: 10px;
+		// position: absolute;
+		// left: 8px;
+		// padding-top: 10px;
+	}
+}
+.menu-modal {
+	width: 262px;
+	.bar-header {
+		background-color: #0d395e;
+		height: 55px;
+		.button.button-icon {
+			top: 0px;
+		}
+	}
+}
+.menu-left {
+	.carouselIndicator {
+		text-align: center;
+		background-color: #f8f8f8;
+		.indicatorDot {
+		  display: inline-block;
+		  height: 10px;
+		  width: 10px;
+		  -webkit-border-radius: 5px;
+		  background-color: #ccc;
+		  &.isActive {
+			  background-color: #999;
+		  }
+		}
+		.indicatorDot:first-child {
+		  margin-right: 5px;
+		}
+	}
+	.has-subnav {
+		background-image: url('../img/icons/next-arrow-menu.png');
+		background-repeat: no-repeat;
+		background-position:  225px center;
+    background-size: auto 55%;
+    -webkit-background-size:  auto 55%;
+	}
+	.last-visit {
+		margin: 12px 6px 0px 6px;
+		padding-left: 16px;
+		text-align: left;
+		font-size: 80%;
+		color: #6e6e6e;
+	}
+	.has-header {
+		top: 55px;
+	}
+	.item {
+		margin: 12px 0;
+		// line-height: 20px;
+		font-size: 120%;
+		border-width: 0px;
+		border-left: 6px solid transparent;
+		padding: 4px 16px 2px;
+		background-color: transparent;
+		color: #414141;
+		sup {
+			font-size: 60%;
+		}
+		&.isActive {
+			border-left: 6px solid $brandPrimary;
+			border-left: 6px solid #198dcd;
+			// margin-top: 0;
+			// margin-bottom: 0;
+			padding-top: 8px;
+			padding-bottom: 8px;
+		}
+		a {
+			padding: 6px 0;
+			background-color: transparent;
+			&.activated {
+				background: transparent;
+			}
+		}
+		&:last-child {
+			a {
+				// padding-bottom: 6px;
+				// border-bottom: 1px solid #333;
+			}
+		}
+	}
+	.utils .list {
+		.item {
+			font-size: 80%;
+			color: #6e6e6e;
+			margin: 0;
+		}
+		&:first-child {	
+			margin: 12px 0 6px 0;
+		}
+		&:after {
+			content: '';
+			border-top: 0;
+			border-bottom: 0;
+		}
+	}
+	.list {
+		&:after {
+			content: '';
+			border-top: 1px solid #e1e1e1;
+			border-bottom: 1px solid #cfcfcf;
+			width: 83%;
+			margin: auto;
+			display: block;
+		}
+	}
+	.bar {
+		height: 55px;
+		display: block;
+		background-color: #13375a;
+		p {
+			display: block;
+			color: #fff;
+			font-size: 24px;
+			float: left;
+			width: 100%;
+			margin: 3px 6px;
+		}
+		a {
+			margin: 0 6px;
+			color: #87b2d4;
+			text-decoration: none;
+	    // background-color: #282828;
+	    background-repeat: no-repeat;
+	    background-size: auto 60%;
+	    -webkit-background-size: auto 60%;
+	    min-width: 40%;
+	    white-space: nowrap;
+			&.settings {
+		    background-image:url('../img/Settings.png');
+		    background-position: left 30%;
+				padding-left: 16px;
+				clear: left;
+				float: left;
+			}
+			&.signoff {
+		    background-image:url('../img/SignOff.png');
+		    background-position: right 30%;
+		    text-align: right;
+				padding-right: 16px;
+				float: right;
+			}
+		}
+	}
+}

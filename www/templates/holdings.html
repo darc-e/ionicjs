@@ -1,0 +1,111 @@
+<ion-view view-title="eBrokerage" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-list class="dropnav" ng-if="hasDropNav">
+    <ion-item on-tap="toggleDropNav()">
+      My Portfolio Holdings <i class="ion-arrow-down-b"></i>
+    </ion-item>
+    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+      {{menuItem.title}}
+    </ion-item>
+  </ion-list>
+  <ion-content has-bouncing="false" scrollbar-y="false" class="holdings has-footer" ng-class="{'has-dropnav': hasDropNav}">
+    <div class="summary">
+      <div class="total">
+        <span class="quoteLabel">Total Market Value</span>
+        <span class="totalVal">USD 390,000.00</span>
+      </div>
+      <div class="change positive">
+        <span class="quoteLabel">Today</span>
+        <p class="changeValue positive">1.34<br> (0.24%)</p>
+      </div>
+      <div class="total">
+        <span class="quoteLabel">Total Invested Amount</span>
+        <span class="totalVal">USD 390,000.00</span>
+      </div>
+    </div>
+    <div ng-init="displayChart='HK'">
+      <div class="item button-bar bar-stable">
+        <a on-tap="displayChart = 'HK'" class="button" ng-class="{active: displayChart=='HK'}">HK</a>
+        <a on-tap="displayChart = 'US'" class="button" ng-class="{active: displayChart=='US'}">US</a>
+        <a on-tap="displayChart = 'SG'" class="button" ng-class="{active: displayChart=='SG'}">SG</a>
+      </div>
+      <img src="img/eBrokerage_graph1.png" class="phone-width" alt="Chart" ng-show="displayChart=='HK'" />
+      <img src="img/eBrokerage_graph2.png" class="phone-width" alt="Chart" ng-show="displayChart=='US'" />
+      <img src="img/eBrokerage_graph3.png" class="phone-width" alt="Chart" ng-show="displayChart=='SG'" />
+    </div>
+    <div class="item item-divider">Investment Types</div>
+      <img src="img/eBrokerage_investmenttypes.png" class="phone-width" alt="Chart" />
+    <div class="item item-divider">Markets</div>
+      <img src="img/eBrokerage_marketsmap.png" class="phone-width" alt="Chart" />
+	  <div class="item item-divider">Movers</div>
+    <div class="item">
+      <div class="flex-row mover-card">
+        <div class="mover-item">
+          <div>
+            <span class="quoteLabel">AIG</span>
+            <span class="quoteLabel">USD 123.45</span>
+          </div>
+          <div>
+            <span class="changeValue positive">1.34</span>
+          </div>
+        </div>
+        <div class="mover-item">
+          <div>
+            <span class="quoteLabel">AIG</span>
+            <span class="quoteLabel">USD 123.45</span>
+          </div>
+          <div>
+            <span class="changeValue negative">-1.34</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex-row mover-card">
+        <div class="mover-item">
+          <div>
+            <span class="quoteLabel">AIG</span>
+            <span class="quoteLabel">USD 123.45</span>
+          </div>
+          <div>
+            <span class="changeValue positive">1.34</span>
+          </div>
+        </div>
+        <div class="mover-item">
+          <div>
+            <span class="quoteLabel">AIG</span>
+            <span class="quoteLabel">USD 123.45</span>
+          </div>
+          <div>
+            <span class="changeValue negative">-1.34</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex-row mover-card">
+        <div class="mover-item">
+          <div>
+            <span class="quoteLabel">AIG</span>
+            <span class="quoteLabel">USD 123.45</span>
+          </div>
+          <div>
+            <span class="changeValue positive">1.34</span>
+          </div>
+        </div>
+        <div class="mover-item">
+          <div>
+            <span class="quoteLabel">AIG</span>
+            <span class="quoteLabel">USD 123.45</span>
+          </div>
+          <div>
+            <span class="changeValue negative">-1.34</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="bar bar-footer bar-primary">
+    <div class="button-bar bar-positive">
+      <a href="#/app/holdings/list" ng-class="{disabled: dropNavExpanded}" class="button disable-user-behavior btn-all-holdings" >See All Holdings</a>
+    </div>
+  </div>
+</ion-view>

@@ -1,0 +1,96 @@
+.holdings {
+	.summary {
+		background-color: #fff;
+		overflow: hidden;
+		padding: 10px 20px;
+	}
+	.total {
+		clear: left;
+		float: left;
+	}
+	.item.button-bar {
+		border: 0;
+	}
+	.change {
+		float: right;
+		.quoteLabel {
+			text-align: right;
+			margin-right: 16px;
+		}
+		.changeValue {
+			text-align: center;
+		  padding-left: 30px;
+		}
+	}
+	.external-item {
+		border: 0;
+		background-color: transparent;
+	}
+	&-list {
+		.summary {
+			background-color: transparent;
+		}
+	}
+	.labelled-buttons {
+		padding: 10px;
+	}
+	.stock-summary {
+		flex: 5;
+		span {
+		  width: 95%;
+		  display: block;
+		  text-overflow: ellipsis;
+		  overflow: hidden;
+		  line-height: 200%;
+		  margin-top: 2px;
+		}
+	}
+	.stock-info {
+		text-align: right;
+		float: right;
+		flex: 3;
+		li {
+			color: #000;
+			.label {
+				color: #666;
+				font-size: 90%;
+			  display: inline-block;
+			  width: 60px;
+			  text-align: right;
+			  margin-right: 6px;
+			}
+		}
+	}
+	.button-label {
+		line-height: 330%;
+		margin-right: 10px;
+	}
+	.mover-card {
+		border: 1px solid #000;
+		border-top: 0;
+		&:first-child {
+			border-top: 1px solid #000;
+		}
+	}
+	.mover-item {
+		&:first-child {
+			border-right: 1px solid #000;
+		}
+		> div {
+			padding: 6px;
+			margin-top: 10px;
+			float: right;
+			&:first-child {
+				margin-top: 0px;
+				float: left;
+			}
+		}
+	}
+
+	button.btn-all-holdings{
+		.disabled{
+			border-color: #7e7e7e;
+			background-color: #7e7e7e;
+		}
+	}
+}

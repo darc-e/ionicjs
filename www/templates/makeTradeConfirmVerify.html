@@ -1,0 +1,88 @@
+<ion-view view-title="{{title}}" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}">
+  <ion-nav-buttons side="left">
+    <button on-tap="doBack()" class="button button-icon icon ion-backicon"  ng-show="!isConfirmed"><i class="icon ion-ios7-arrow-back"></i></button>
+  </ion-nav-buttons>
+  <ion-list class="dropnav">
+    <ion-item on-tap="toggleDropNav()">
+      Trade Now <i class="ion-arrow-down-b"></i>
+    </ion-item>
+    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+      {{menuItem.title}}
+    </ion-item>
+  </ion-list>
+  <ion-content class="has-dropnav has-footer tradeConfirm" has-bouncing="false" scrollbar-y="false">
+    <h3>{{pageTitle}}</h3>
+    <div class="card">
+      <div class="item comfirmation-msg" ng-show="isConfirmed">
+        <p>We have received your trade on 5/10/2014 2:30PM. You can check your trade's status in "Trade Status".</p>
+      </div>
+      <div class="item">
+        <p class="timeStamp">05/08/14 2:30</p>
+        <h2>{{transaction.stockCode[1] || 'Enter Stock'}}</h2>
+        <p>{{transaction.stockCode[2].Name || 'China Bank'}}</p>
+      </div>
+      <div class="item row section-divider">
+        <div class="col dataLabel">Market</div>
+        <div class="col col-75">{{transaction.stockCode[0] || 'HK'}}</div>
+      </div>
+      <div class="item row">
+        <div class="col dataLabel">Settlement Account</div>
+        <div class="col col-75">{{transaction.securityAccount || "Choose a Settlement Account"}}</div>
+      </div>
+      <div class="item row">
+        <div class="col dataLabel">Settlement Account</div>
+        <div class="col col-75">{{transaction.settlementAccount || "Choose a Settlement Account"}}</div>
+      </div>
+      <div class="item row section-divider">
+        <div class="col dataLabel">Order type</div>
+        <div class="col col-75">{{transaction.orderType || "Select Type"}}</div>
+      </div>
+      <div class="item row">
+        <div class="col dataLabel">Action</div>
+        <div class="col col-75">{{transaction.transactionType || "Select Type"}}</div>
+      </div>
+      <div class="item row">
+        <div class="col dataLabel">Price</div>
+        <div class="col col-75">{{transaction.price | currency:"":2}}</div>
+      </div>
+      <div class="item row">
+        <div class="col dataLabel">Quantity</div>
+        <div class="col col-75">{{transaction.quantity | currency:"":2}}</div>
+      </div>
+      <div class="item row">
+        <div class="col dataLabel">Good Till</div>
+        <div class="col col-75">{{transaction.date}}</div>
+      </div>
+      <div class="item row summary-item">
+        <div class="col dataLabel">Transaction Amount</div>
+        <div class="col col-75">{{transaction.stockCode[0] || 'HK'}}D {{transaction.transactionCost | currency:"":2}}</div>
+      </div>
+      <div class="item row summary-item">
+        <div class="col dataLabel">Fees Till</div>
+        <div class="col col-75">{{transaction.Fees | currency:"":2}}</div>
+      </div>
+      <div class="item row summary-item section-divider">
+        <div class="col dataLabel">Total Amount</div>
+        <div class="col col-75 grand-total">{{transaction.stockCode[0] || 'HK'}}D {{transaction.transactionTotal | currency:"":2}}</div>
+      </div>
+      <div class="item row reference-msg" ng-show="isConfirmed">
+        <div class="col"><small>Reference</small> #1234</div>
+      </div>
+    </div>
+
+    <div class="item disclaimer">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum auctor elementum. Praesent nisl ipsum, sodales consectetur egestas eu, posuere interdum orci.</p>
+    </div>
+  </ion-content>
+
+  <div class="bar bar-footer bar-primary">
+    <div class="button-bar bar-positive" ng-hide="isConfirmed">
+      <a on-tap="doCancel()" class="button button-dark">Cancel</a>
+      <a href="#/app/makeTrade/confirm"class="button">Continue</a>
+    </div>
+    <div class="button-bar bar-positive" ng-show="isConfirmed">
+      <a on-tap="" class="button button-dark">View Trade Status</a>
+      <a on-tap="doStartOver()" class="button">Make Another Trade</a>
+    </div>
+  </div>
+</ion-view>

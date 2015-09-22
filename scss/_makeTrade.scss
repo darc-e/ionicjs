@@ -1,0 +1,142 @@
+.customQuote.trade {
+	border: none;
+
+	.quoteLabel {
+		font-size: 12px;
+		color: #666;
+	}
+	.quoteInfo {
+		font-size: 18px;
+		color: #666;
+	}
+	.market {
+		padding: 0;
+		width: 17%;
+	}
+	.code {
+		padding: 0 0 0 10px;
+	}
+}
+.makeTradeView .tradeAlert {
+	background: #eee;
+	color: #000;
+	text-align: center;
+	padding: 8px;
+	margin: 16px 0;
+	
+	p {
+		font-size: 14px;
+		padding: 8px;
+		
+		&:first-child {
+			border-bottom: 1px solid #ccc;
+		}
+	}
+}
+.makeTradeView .item p, .makeTradeView .item label, .makeTradeView .item input  {
+	font-size: 18px;
+}
+.makeTradeView .item .tradeAlert p {
+	font-size: 90%;
+}
+.makeTradeView .item p small, .makeTradeView .item label small {
+	font-size: 66%;
+}
+.makeTradeView .tradeAlert.error {
+	background: #990000;
+	color: #fff;
+	p {
+		color: #fff;
+		
+		&:first-child {
+			border-bottom: 1px solid #fff;
+		}
+	}
+}
+ .stepper {
+ 	position:absolute;
+ 	right: 16px;
+ 	padding: 0px;
+ 	min-width: 44px;
+	min-height: 36px;
+ }
+ .stepperUp {
+ 	top: 14px;
+ }
+ .stepperDown {
+ 	top: 60px;
+ }
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+}
+.tradeConfirm {
+	h3 {
+		margin-top: 20px;
+		text-align: center;
+		font-size: 100%;
+	}
+	.timeStamp {
+		right: 20px;
+		position: absolute;
+	}
+	.item {
+		border: 0px;
+	}
+	.section-divider {
+		padding-top: 12px;
+		&:after {
+			content: '';
+			position: absolute;
+			border-bottom: 1px solid #333;
+			width: 96%;
+			left: 8px;
+			top: 6px;
+		}
+	}
+	.col {
+		text-align: right;
+		text-transform: capitalize;
+		&:first-child {
+			border-right: 0px;
+		}
+	}
+	.summary-item {
+		background-color: #f2f2f2;
+		border-top: 1px solid #333;
+		~.summary-item {
+			border-top: 0;
+		}
+	}
+	.col-75 {
+		vertical-align: middle;
+		line-height: 200%;
+	}
+	.dataLabel {
+		font-size: 70%;
+		white-space: normal;
+	}
+	.disclaimer {
+		background-color: transparent;
+		p {		
+			white-space: normal;
+		}
+	}
+	.grand-total {
+		font-size: 150%;
+	}
+	.comfirmation-msg {
+		border-color: #0c63ee;
+		background-color: #387ef5;
+		p {
+			color: #fff;
+			white-space: normal;
+		}
+	}
+	.reference-msg {
+		color: #fff;
+		background-color: #999;
+		.col {
+			text-align: left;
+		}
+	}
+}

@@ -1,0 +1,14 @@
+@mixin add-font($familyName, $baseFaceName, $weight, $style, $otherFontDir:"") {
+	$fontDir: if($otherFontDir!="", $otherFontDir, $fonts-path);	// optionally, use specified dir instead of default
+	$fontPath: $fontDir + "/" + $baseFaceName;
+	@font-face {
+		font-family: $familyName;
+		font-weight: $weight;
+		font-style: $style;
+		src: url($fontPath + ".eot");	// IE
+		src: local($familyName),	// Ignore local fonts
+			 url($fontPath + ".woff") format("woff"),
+			 url($fontPath + ".ttf") format("truetype"),
+			 url($fontPath + ".svg#webfont") format("svg");
+	}
+}

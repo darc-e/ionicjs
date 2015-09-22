@@ -1,0 +1,241 @@
+
+
+.createWatchList{
+	color:	#FFF;
+	background: #909090;
+	margin: 10px auto;
+	padding: 5px 20px;
+	width: 80%;
+	left: 10%;
+	position: relative;
+}
+
+.watchlistDetails{
+	.delete-buttons{
+		text-align:right;
+		max-height: 20px;
+		.button.button-clear{
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 1;
+			height: 20px;
+			padding: 0 10px;
+			margin: 0;
+			height: 12px !important;
+			//display: none;
+		}
+	}
+}
+
+.card.watchList {
+	.lastValueBox{
+		border-right: 0;
+	}
+	.changeValueBox{
+		vertical-align: text-bottom;
+	}
+
+	.quoteLabel{
+		font-size: 110%;
+		font-weight: bold;
+	}
+
+	.watchListItem{
+		font-weight: normal;
+		font-size: 80%;
+		color:	#909090;
+	}
+	
+	.list ul{
+		text-align: right;
+	}
+	.lastValue{
+		font-weight: normal;
+		color: #6E6E6E;
+		font-size: 115%;
+	}
+	.icon{
+		font-size: 110%;
+	}
+
+	.flex-row {
+		.changeValueBox {
+			flex: 2;
+		}
+		.lastValueBox {
+			flex: 2;
+		}
+		.icon {
+			flex: 1;
+		}
+	}
+}
+
+.watchlistHeroDetails {
+	text-align: left;
+	background-color: #fff;
+	border: 1px solid #333;
+	.summaryBox{
+		padding: 20px 10px;
+		.watchlistName{
+			font-size: 110%;
+			color:	#909090;
+			font-weight: 600;
+		}
+	}
+	.watchlist.delete{
+		position: absolute;
+		right: 20%;
+		top: 0px;
+		height: 100%;
+		width: 20%;
+		color: #777;
+		font-size: 80%;
+		border: 0;
+		border-left: 1px solid #333;
+		background: #fff;
+		&:first-letter {
+			font-size: 100%;
+			line-height: 100%;
+		}
+	}
+	.watchlist.edit {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		height: 100%;
+		width: 20%;
+		color: #777;
+		font-size: 80%;
+		border: 0;
+		border-left: 1px solid #333;
+		background: #fff;
+		&:first-letter {
+			font-size: 100%;
+			line-height: 100%;
+		}
+	}
+	.flex-row {
+		.changeValueBox {
+			flex: 2;
+		}
+		.lastValueBox {
+			flex: 2;
+		}
+		
+	}
+	.changeValue.none {
+		background: url('');
+	}
+}
+
+.watchlistDetails{
+	.delete-btns{
+		text-align:right;
+		max-height: 20px;
+		.button.button-clear{
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 1;
+			height: 20px;
+			padding: 0 10px;
+			margin: 0;
+			height: 12px !important;
+		}
+	}
+}
+
+.card.watchlistDetails{
+	.stock-summary {
+		flex: 5;
+		span {
+		  width: 90%;
+		  display: block;
+		  text-overflow: ellipsis;
+		  overflow: hidden;
+		  line-height: 200%;
+		  margin-top: 2px;
+		}
+	}
+	.stock-info {
+		text-align: left;
+		float: right;
+		flex: 3;
+		li {
+			color: #000;
+			.label {
+				color: #666;
+				font-size: 90%;
+			  	display: inline-block;
+			  	width: 60px;
+			  	text-align: right;
+			  	margin-right: 6px;
+			}
+		}
+	}
+	.items-list{
+		flex: 8;
+	}
+	.delete-list{
+		flex: 3;
+		text-align: center;
+		.delete-items{
+			padding: 24px 10px;
+			background: #ef473a;
+			.button{
+				border: 0;
+			}
+		}
+	}
+	
+}
+
+.watchlistCreate{
+	color:	#909090;
+	font-size: 120%;
+	.headerText{
+		padding: 10px 30px;
+		color:	#777;
+	}
+
+	.card.watchlistCreate{
+		padding: 10px 20px 0px 20px;
+		label{
+			color: #000;
+		}
+		input[type="text"]{
+			color:	#777;
+			font-size: 120%
+		}
+	}
+	
+
+}
+
+.bar.watchlistCreate{
+	background: #424242;
+		.button.button-dark{
+			background: #000;
+		}
+		.button.disabled{
+			border-color: #7e7e7e;
+			background-color: #7e7e7e;
+		}
+	}
+
+.watchlistAdd{
+	.watchListItem{
+		font-weight: normal;
+		font-size: 80%;
+		color:	#909090;
+	}
+}
+.card.watchlistAdd{
+	.watchlistFilter{
+		font-size: 80%;
+	}
+	.watchlistFilterType{
+		color:	#777;
+		font-size: 110%	
+	}
+}

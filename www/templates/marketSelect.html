@@ -1,0 +1,12 @@
+<ion-view view-title="MARKET: Available Markets">
+	<ion-nav-buttons side="left">
+    <button on-tap="doBack()" class="button button-icon icon ion-backicon"><i class="icon ion-ios7-arrow-back"></i></button>
+  </ion-nav-buttons>
+  <ion-content has-header has-bouncing="false" scrollbar-y="false">
+    <ion-list has-padding>
+      <ion-item on-tap="doSelectMarket('HK')"> HK Hong Kong Market</ion-item>
+      <ion-item on-tap="doSelectMarket('US')"> US United States Market</ion-item>
+      <ion-item on-tap="doSelectMarket('SG')"> SG Singapore Market</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

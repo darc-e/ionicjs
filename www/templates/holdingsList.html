@@ -1,0 +1,49 @@
+<ion-view view-title="eBrokerage" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}">
+  <ion-nav-buttons side="left">
+    <button on-tap="doBack()" class="button button-icon icon ion-backicon"><i class="icon ion-ios7-arrow-back"></i></button>
+  </ion-nav-buttons>
+  <ion-list class="dropnav" ng-if="hasDropNav">
+    <ion-item on-tap="toggleDropNav()">
+      My Portfolio Holdings <i class="ion-arrow-down-b"></i>
+    </ion-item>
+    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+      {{menuItem.title}}
+    </ion-item>
+  </ion-list>
+  <ion-content has-bouncing="false" scrollbar-y="false" class="holdings holdings-list" ng-class="{'has-dropnav': hasDropNav}">
+    <div class="summary">
+      <div class="total">
+        <span class="quoteLabel">Total Market Value</span>
+        <span class="totalVal">USD 390,000.00</span>
+      </div>
+      <div class="change positive">
+        <span class="quoteLabel">Today</span>
+        <p class="changeValue positive">1.34<br> (0.24%)</p>
+      </div>
+      <div class="total">
+        <span class="quoteLabel">Total Invested Amount</span>
+        <span class="totalVal">USD 390,000.00</span>
+      </div>
+    </div>
+    <div class="card">
+      <ion-item on-tap="doNavigate('holdings/list/filter/Market')" class="item-icon-right">
+        <span class="quoteLabel">Markets</span>
+        <span>{{filterText.Market}}</span>
+        <i class="icon ion-ios7-arrow-right"></i>
+      </ion-item>
+      <ion-item on-tap="doNavigate('holdings/list/filter/Account')" class="item-icon-right">
+        <span class="quoteLabel">Accounts</span>
+        <span>{{filterText.Account}}</span>
+        <i class="icon ion-ios7-arrow-right"></i>
+      </ion-item>
+    </div>
+    <div class="labelled-buttons">
+      <div class="button-bar bar-stable">
+        <span class="button-label">Sort By:</span>
+        <a on-tap="changeSorting('Market')" class="button" ng-class="{active: sortBy=='Market'}">Market</a>
+        <a on-tap="changeSorting('Account')" class="button" ng-class="{active: sortBy=='Account'}">Account</a>
+      </div>
+    </div>
+    <div stock-list=""></div>
+  </ion-content>
+</ion-view>

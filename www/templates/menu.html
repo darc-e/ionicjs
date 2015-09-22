@@ -1,0 +1,52 @@
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-dark">
+      <!-- <ion-nav-back-button> -->
+      <!-- </ion-nav-back-button> -->
+
+      <!-- <ion-nav-buttons side="left"> -->
+        <!-- <button class="button button-icon button-clear ion-navicon" menu-toggle="left"> -->
+        <!-- </button> -->
+      <!-- </ion-nav-buttons> -->
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" width="262">
+    <header class="bar bar-header bar-stable">
+      <p>John Smith</p>
+      <a class="settings">Settings</a>
+      <a class="signoff">Sign off</a>
+    </header>
+    <ion-content class="has-header mrc" has-bouncing="false">
+        <ion-scroll direction="x" scrollbar-x="false" has-bouncing="false">
+          <ul class="MainMenuQuickTask">
+            <li><a><img src="img/mrc/QuickTask_1.png" alt="" /></a></li>
+            <li><a><img src="img/mrc/QuickTask_2.png" alt="" /></a></li>
+            <li><a><img src="img/mrc/QuickTask_3.png" alt="" /></a></li>
+          </ul>
+        </ion-scroll>
+        <p class="last-visit">You last signed in on 11/29/2014 12:23 PM EST</p>
+        <ion-list>
+          <ion-item nav-clear>My Accounts</ion-item>
+        </ion-list>
+        <ion-list>
+          <ion-item nav-clear class="isActive">eBrokerage</ion-item>
+          <ion-item nav-clear>Citi Wallet<sup>SM</sup></ion-item>
+        </ion-list>
+        <ion-list>
+          <ion-item nav-clear>My Rewards</ion-item>
+          <ion-item nav-clear class="has-subnav">Offers for you</ion-item>
+        </ion-list>
+        <ion-list class="utils">
+          <ion-item nav-clear>ATM/Branch Locations</ion-item>
+          <ion-item nav-clear>Contact Us</ion-item>
+          <ion-item nav-clear>Help</ion-item>
+          <ion-item nav-clear>Give us your Feedback</ion-item>
+          <ion-item nav-clear>Privacy Policy</ion-item>
+        </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
+

@@ -1,0 +1,74 @@
+<ion-view view-title="eBrokerage" ng-class="{'dropNavExpanded': dropNavExpanded, '': !dropNavExpanded}" >
+  <ion-nav-buttons side="left">
+    <button on-tap="doNavigate('watchlist')" class="button button-icon icon ion-backicon"><i class="icon ion-ios7-arrow-back"></i></button>
+  </ion-nav-buttons>
+  <ion-list class="dropnav" ng-if="hasDropNav">
+    <ion-item on-tap="toggleDropNav()">
+      Watchlist <i class="ion-arrow-down-b"></i>
+    </ion-item>
+    <ion-item ng-repeat="menuItem in menuItems" on-tap="doNavigate('{{menuItem.link}}')" ng-class="{'isActive': menuItem.isActive, '': !menuItem.isActive}">
+      {{menuItem.title}}
+    </ion-item>
+  </ion-list>
+  <ion-content class="watchlistDetails" has-bouncing="false" scrollbar-y="false" ng-class="{'has-dropnav': hasDropNav, '': !hasDropNav}">
+    <div class="watchlistHeroDetails card">
+      <div class="summaryBox">
+        <span class="watchlistName">{{currentList.name}}</span>
+        <button on-tap="openModal({{listId}})" class="watchlist delete">Delete</button>
+        <button on-tap="doEditWatchList()" class="watchlist edit">Edit</button>
+      </div>
+      <div class="flex-row">
+        <div class="lastValueBox">
+          <span class="quoteLabel">Holdings</span>
+          <span class="lastValue">{{currentList.itemCount}}</span>
+        </div>
+        <div class="changeValueBox">
+          <span class="quoteLabel">Change</span>
+          <span class="changeValue {{currentList.ChangeDirection}}" >
+            <span ng-if="currentList.changeTotal != 0" >{{currentList.changeTotal}} <sub>({{currentList.changePercent}}%)</sub></span>
+            <span ng-if="currentList.changeTotal == 0" >N/A</span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="scroll">
+       <button on-tap="doNavigate('watchlistAdd', '{{listId}}')" class="createWatchList"> ADD TO WATCH LIST + </button>
+    </div>
+    <div class="delete-btns" ng-show="{{currentList.itemCount}}">
+      <div ng-if="!isDelete">
+        <button on-tap="showDeleteWatchList()" class="button button-clear button-positive ">Delete</button>
+      </div>
+      <div ng-if="isDelete">
+        <button on-tap="hideDeleteWatchList()" class="button button-clear button-positive" >Done</button>
+      </div>
+    </div>
+    <div class="card watchlistDetails flex-row" ng-show="{{currentList.itemCount}}">
+      <div class="items-list">
+      <ion-list>
+        <ion-item class=" flex-row" ng-class="isDelete? '' : 'item-icon-right'"  on-tap="doNavigate('watchlist/{{listId}}/{{item.item.Symbol}}')" ng-repeat="item in currentList.items">
+          <div class="stock-summary">
+            <span>{{item.item.Name}}</span>
+            <p class="changeValue {{item.item.ChangeDirection}}">{{item.item.Change}} ({{item.item.ChangePercent}}%)</p>
+          </div>
+          <ul class="stock-info">
+            <li><span class="label">Symbol: </span>{{item.item.Symbol}}</li>
+            <li><span class="label">Code: </span>{{item.Code}}</li>
+            <li><span class="label">Account: </span>{{item.Account}}</li>
+          </ul>
+          <i class="icon ion-ios7-arrow-right" ng-if="!isDelete"></i>
+        </ion-item>
+      </ion-list>
+      </div>
+      <div class="delete-list" ng-show="isDelete">
+      <ion-list>
+           <ion-item ng-repeat="item in currentList.items" class="delete-items">
+              <div class="item-delete"  >
+                <button on-tap="doDeleteWatchListItem('{{$index}}')" class="button button-assertive btn-delete">Delete</button>
+              </div>
+          </ion-item>
+      </ion-list>
+      </div>
+    </div>
+     
+  </ion-content>
+</ion-view>

@@ -1,0 +1,66 @@
+.customQuoteBox {
+	background-color: #bbb;
+	padding: 15px;
+}
+.stockName {
+	text-transform: capitalize;
+}
+p.stockSymbol {
+	text-transform: uppercase;
+	font-size: 120%;
+}
+.customQuote {
+	border: 1px solid #333;
+	position: relative;
+	background-color: #fff;
+	.market,
+	.code {
+		text-decoration: none;
+		padding: 15px 0 10px 10px;
+		display: inline-block;
+	}
+	.market {
+		width: 20%;
+		border-right: 1px solid #bbb;
+		padding: 0 0 0 10px;
+	}
+	.code {
+		width: 55%;
+	}
+	.quote {
+		border: 0;
+		position: absolute;
+		right: 0px;
+		top: -1px;
+		height: 101%;
+		width: 20%;
+		background-color: $brandDark;
+		color: #fff;
+		&:disabled {
+			background-color: #333;
+			color: #fff;
+		}
+	}
+	.quoteLabel {
+		color: $brandDark;
+		display: block;
+		font-size: 80%;
+	}
+	.quoteInfo {
+		line-height: initial;
+		color: $brandPrimary;
+		font-size: 150%;
+	}
+	::-webkit-input-placeholder {
+	   color: $brandPrimary;
+	}
+	:-moz-placeholder { /* Firefox 18- */
+	   color: $brandPrimary;  
+	}
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: $brandPrimary;  
+	}
+	:-ms-input-placeholder {  
+	   color: $brandPrimary;  
+	}
+}
